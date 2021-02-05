@@ -1,12 +1,20 @@
-const Sequelize = require('sequelize')
+const express = require('express')
+const app = express()
+const handlebars = require('express-handlebars')
 
-const sequelize = new Sequelize('clins', 'root', '123456', {
-    host: 'localhost',
-    dialect: 'mysql'
+app.engine('handlebars', handlebars({defaultLayout: 'main'}))
+app.set('view engine', 'handlebars')
+//Rotas
+app.get('/pagamento', function(req, res){
+    res.render("pagamento")
 })
 
-sequelize.authenticate().then(function(){
-    console.log('Conexão realizada com SUCESSO!!!')
-}).catch(function(err){
-    con
+app.get('/cad-pagamento', function(req, res){
+    res.render('cad-pagamento')
 })
+
+app.post('add-pagamento', function(req, res){
+    
+})
+
+app.listen(8080)
